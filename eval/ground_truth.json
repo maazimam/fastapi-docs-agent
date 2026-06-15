@@ -1,0 +1,554 @@
+[
+  {
+    "id": "sh_001",
+    "category": "single_hop",
+    "question": "How do you declare a path parameter in FastAPI?",
+    "expected_answer": "Include the parameter name in curly braces in the path string (e.g. /items/{item_id}) and add a matching function argument. You can add a type annotation like item_id: int for parsing and validation.",
+    "supporting_chunks": ["prose/tutorial/path-params.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_002",
+    "category": "single_hop",
+    "question": "How does FastAPI know a function parameter is a query parameter?",
+    "expected_answer": "Any function parameter that is not part of the path is automatically interpreted as a query parameter. FastAPI parses, converts, and validates it using the declared Python type.",
+    "supporting_chunks": ["prose/tutorial/query-params.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_003",
+    "category": "single_hop",
+    "question": "How do you set the HTTP status code for a path operation response?",
+    "expected_answer": "Pass status_code to the path operation decorator (e.g. @app.post('/items/', status_code=201)). It is a decorator parameter, not a parameter of the path operation function.",
+    "supporting_chunks": ["prose/tutorial/response-status-code.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_004",
+    "category": "single_hop",
+    "question": "What are background tasks in FastAPI used for?",
+    "expected_answer": "Background tasks run after the response is returned. They are useful for slow work the client does not need to wait for, such as sending email notifications or processing uploaded files.",
+    "supporting_chunks": ["prose/tutorial/background-tasks.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_005",
+    "category": "single_hop",
+    "question": "How do you enable CORS in a FastAPI application?",
+    "expected_answer": "Import CORSMiddleware from fastapi.middleware.cors, define a list of allowed origins, and add it as middleware to the FastAPI app with app.add_middleware(CORSMiddleware, allow_origins=origins, ...).",
+    "supporting_chunks": ["prose/tutorial/cors.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_006",
+    "category": "single_hop",
+    "question": "How do you declare a dependency in a FastAPI path operation?",
+    "expected_answer": "Define a dependency function and inject it with Depends(). For example: commons: Annotated[dict, Depends(common_parameters)]. FastAPI calls the dependency and passes the result to your path operation.",
+    "supporting_chunks": ["prose/tutorial/dependencies/index.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_007",
+    "category": "single_hop",
+    "question": "What does middleware do in FastAPI?",
+    "expected_answer": "Middleware runs on every request before it reaches any path operation, and on every response before it is returned. It can inspect or modify the request and response.",
+    "supporting_chunks": ["prose/tutorial/middleware.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_008",
+    "category": "single_hop",
+    "question": "What package do you need to install to receive file uploads in FastAPI?",
+    "expected_answer": "Install python-multipart. Uploaded files are sent as form data, and FastAPI requires this package to parse them.",
+    "supporting_chunks": ["prose/tutorial/request-files.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_009",
+    "category": "single_hop",
+    "question": "How do you return an HTTP error to the client in FastAPI?",
+    "expected_answer": "Raise HTTPException with a status_code and detail message. Because it is a Python exception, you raise it rather than return it.",
+    "supporting_chunks": ["prose/tutorial/handling-errors.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_010",
+    "category": "single_hop",
+    "question": "How do you serve static files in FastAPI?",
+    "expected_answer": "Import StaticFiles from fastapi.staticfiles and mount it on a path, e.g. app.mount('/static', StaticFiles(directory='static'), name='static').",
+    "supporting_chunks": ["prose/tutorial/static-files.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_011",
+    "category": "single_hop",
+    "question": "Why should you declare a response model in FastAPI?",
+    "expected_answer": "A response model validates returned data, documents the response schema in OpenAPI, serializes output to JSON, and limits or filters the response data — which is important for security.",
+    "supporting_chunks": ["prose/tutorial/response-model.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_012",
+    "category": "single_hop",
+    "question": "How do you declare a request body in FastAPI?",
+    "expected_answer": "Define a Pydantic BaseModel and use it as a parameter type in your path operation function. FastAPI reads the JSON body, validates it, and converts it to the model instance.",
+    "supporting_chunks": ["prose/tutorial/body.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_013",
+    "category": "single_hop",
+    "question": "How do you read a cookie value in a FastAPI path operation?",
+    "expected_answer": "Declare a function parameter with Cookie(), e.g. ads_id: Annotated[str | None, Cookie()] = None. FastAPI extracts the cookie from the request headers.",
+    "supporting_chunks": ["prose/tutorial/cookie-params.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_014",
+    "category": "single_hop",
+    "question": "How do you set the API title shown in the automatic docs?",
+    "expected_answer": "Pass title (and other metadata like description, version, contact) to the FastAPI constructor, e.g. app = FastAPI(title='ChimichangApp'). These fields appear in the OpenAPI schema and docs UI.",
+    "supporting_chunks": ["prose/tutorial/metadata.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_015",
+    "category": "single_hop",
+    "question": "How do you test a FastAPI application?",
+    "expected_answer": "Use TestClient from fastapi.testclient (requires httpx). Pass your FastAPI app to TestClient and write pytest functions that call client.get(), client.post(), etc. with assert statements.",
+    "supporting_chunks": ["prose/tutorial/testing.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_016",
+    "category": "single_hop",
+    "question": "What do you need to install to use WebSockets with FastAPI?",
+    "expected_answer": "Install the websockets package with pip install websockets.",
+    "supporting_chunks": ["prose/advanced/websockets.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_017",
+    "category": "single_hop",
+    "question": "Where do you pass tags and summary for a path operation in FastAPI?",
+    "expected_answer": "Pass them directly to the path operation decorator (e.g. @app.get('/items/', tags=['items'], summary='Read items')), not to the path operation function itself.",
+    "supporting_chunks": ["prose/tutorial/path-operation-configuration.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_018",
+    "category": "single_hop",
+    "question": "How does FastAPI handle header names with hyphens when you declare them in Python?",
+    "expected_answer": "Header automatically converts underscore characters in parameter names to hyphens, so you can use user_agent in Python code and FastAPI maps it to the User-Agent header.",
+    "supporting_chunks": ["prose/tutorial/header-params.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_019",
+    "category": "single_hop",
+    "question": "How do you receive HTML form data in FastAPI?",
+    "expected_answer": "Declare parameters with Form(), e.g. username: Annotated[str, Form()]. You must install python-multipart because form data is sent as multipart form encoding.",
+    "supporting_chunks": ["prose/tutorial/request-forms.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_020",
+    "category": "single_hop",
+    "question": "How do you set up OAuth2 password bearer token authentication in FastAPI?",
+    "expected_answer": "Create an OAuth2PasswordBearer instance with a tokenUrl (e.g. oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')), then inject the token in path operations with Depends(oauth2_scheme).",
+    "supporting_chunks": ["prose/tutorial/security/first-steps.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_021",
+    "category": "single_hop",
+    "question": "What is jsonable_encoder used for in FastAPI?",
+    "expected_answer": "jsonable_encoder converts data (such as a Pydantic model or datetime) into a JSON-compatible format (dict, list, str, etc.) suitable for storage or serialization.",
+    "supporting_chunks": ["prose/tutorial/encoder.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_022",
+    "category": "single_hop",
+    "question": "When does FastAPI lifespan startup code run?",
+    "expected_answer": "Lifespan startup code runs once before the application starts receiving requests. Shutdown code runs once after the application finishes handling requests.",
+    "supporting_chunks": ["prose/advanced/events.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_023",
+    "category": "single_hop",
+    "question": "Can FastAPI path operation parameters use UUID and datetime types?",
+    "expected_answer": "Yes. FastAPI supports extra data types like UUID, datetime.datetime, datetime.date, and datetime.time. They are parsed from strings and validated automatically, with datetime values represented in ISO 8601 format.",
+    "supporting_chunks": ["prose/tutorial/extra-data-types.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_024",
+    "category": "single_hop",
+    "question": "How do you add validation metadata to fields in a Pydantic request body model?",
+    "expected_answer": "Use Pydantic's Field inside the model, e.g. price: float = Field(gt=0, description='The price must be greater than zero'). This adds validation and metadata to individual body fields.",
+    "supporting_chunks": ["prose/tutorial/body-fields.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "sh_025",
+    "category": "single_hop",
+    "question": "How do you run a FastAPI app directly from a Python file for debugging?",
+    "expected_answer": "Import uvicorn and call uvicorn.run(app, host='0.0.0.0', port=8000) inside an if __name__ == '__main__' block. This lets you attach a debugger in your editor.",
+    "supporting_chunks": ["prose/tutorial/debugging.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "ood_001",
+    "category": "out_of_domain",
+    "question": "How do I train a neural network in PyTorch?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_002",
+    "category": "out_of_domain",
+    "question": "How do I set up a PostgreSQL database from scratch?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_003",
+    "category": "out_of_domain",
+    "question": "What is the difference between TCP and UDP?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_004",
+    "category": "out_of_domain",
+    "question": "How do I deploy a React app to Vercel?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_005",
+    "category": "out_of_domain",
+    "question": "How do I fine-tune a large language model on a custom dataset?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_006",
+    "category": "out_of_domain",
+    "question": "What is the CAP theorem in distributed systems?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_007",
+    "category": "out_of_domain",
+    "question": "How do I configure Kubernetes horizontal pod autoscaling?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_008",
+    "category": "out_of_domain",
+    "question": "How do I write a binary search algorithm in Python?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_009",
+    "category": "out_of_domain",
+    "question": "What is the difference between SQL and NoSQL databases?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "ood_010",
+    "category": "out_of_domain",
+    "question": "How do I center a div in CSS?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_001",
+    "category": "in_domain_uncovered",
+    "question": "What is the recommended pattern for scaling dependency_overrides across many tests with a deeply nested dependency graph?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_002",
+    "category": "in_domain_uncovered",
+    "question": "Is there a supported hook in FastAPI to inspect the resolved dependency tree for a given request?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_003",
+    "category": "in_domain_uncovered",
+    "question": "What is the guaranteed teardown timing of a yield dependency when that dependency is overridden via dependency_overrides during testing?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_004",
+    "category": "in_domain_uncovered",
+    "question": "What is the recommended pattern for reusing FastAPI service dependencies outside the request context, such as in background workers, CLI commands, and tests?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_005",
+    "category": "in_domain_uncovered",
+    "question": "How do you run a permanent long-running background task alongside a FastAPI app using lifespan?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_006",
+    "category": "in_domain_uncovered",
+    "question": "How do you rate-limit requests per client IP in FastAPI?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_007",
+    "category": "in_domain_uncovered",
+    "question": "How do you expose a Prometheus metrics endpoint from a FastAPI application?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_008",
+    "category": "in_domain_uncovered",
+    "question": "How do you configure structured JSON logging in a FastAPI application?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_009",
+    "category": "in_domain_uncovered",
+    "question": "How do you implement graceful shutdown in FastAPI to let in-flight requests complete before the process exits?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_010",
+    "category": "in_domain_uncovered",
+    "question": "How do you implement multi-tenant request routing in FastAPI where each tenant gets isolated dependencies?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_011",
+    "category": "in_domain_uncovered",
+    "question": "How do you implement a circuit breaker or retry policy for outbound HTTP calls made inside a FastAPI dependency?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_012",
+    "category": "in_domain_uncovered",
+    "question": "How do you attach a unique request ID or correlation ID to every request and propagate it through logs in FastAPI?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_013",
+    "category": "in_domain_uncovered",
+    "question": "How do you implement cursor-based pagination in a FastAPI endpoint?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_014",
+    "category": "in_domain_uncovered",
+    "question": "How do you implement a health check endpoint in FastAPI that checks downstream dependencies like a database?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_015",
+    "category": "in_domain_uncovered",
+    "question": "How do you version a FastAPI API using URL path prefixes such as /v1 and /v2 with separate routers?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_016",
+    "category": "in_domain_uncovered",
+    "question": "How do you serve multiple independent FastAPI applications under one Uvicorn process?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_017",
+    "category": "in_domain_uncovered",
+    "question": "How do you configure SQLAlchemy connection pool size and timeout when using it with FastAPI?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_018",
+    "category": "in_domain_uncovered",
+    "question": "How do you batch incoming inference requests in FastAPI to maximize GPU utilization?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "idc_019",
+    "category": "in_domain_uncovered",
+    "question": "How do you enforce per-user request quotas across multiple FastAPI worker processes?",
+    "expected_answer": null,
+    "supporting_chunks": [],
+    "should_abstain": true
+  },
+  {
+    "id": "mh_001",
+    "category": "multi_hop",
+    "question": "How do you protect a WebSocket endpoint in FastAPI using the same OAuth2 token dependency used for HTTP endpoints?",
+    "expected_answer": "WebSocket endpoints support Depends() just like HTTP endpoints. Declare the OAuth2PasswordBearer dependency in the WebSocket path operation function using Depends(), the same way you would for an HTTP route. The token is extracted from the query string or headers.",
+    "supporting_chunks": ["prose/advanced/websockets.md", "prose/tutorial/security/first-steps.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_002",
+    "category": "multi_hop",
+    "question": "How do you override a settings dependency in tests so that test environment variables are used instead of production ones?",
+    "expected_answer": "Define your settings as a dependency using Pydantic's BaseSettings and Depends(). In tests, use app.dependency_overrides to replace the settings dependency with a function returning test-specific settings.",
+    "supporting_chunks": ["prose/advanced/settings.md", "prose/advanced/testing-dependencies.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_003",
+    "category": "multi_hop",
+    "question": "How do you add a background task from inside a dependency rather than directly in the path operation function?",
+    "expected_answer": "Inject BackgroundTasks as a parameter in the dependency function. FastAPI will pass the same BackgroundTasks instance to both the dependency and the path operation, so tasks added in the dependency are executed after the response.",
+    "supporting_chunks": ["prose/tutorial/background-tasks.md", "prose/tutorial/dependencies/index.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_004",
+    "category": "multi_hop",
+    "question": "How do you declare a router-level dependency that applies to all routes in a router in a bigger application?",
+    "expected_answer": "Pass dependencies to the APIRouter constructor with the dependencies parameter, e.g. router = APIRouter(dependencies=[Depends(verify_token)]). All routes registered on that router will require that dependency.",
+    "supporting_chunks": ["prose/tutorial/bigger-applications.md", "prose/tutorial/dependencies/dependencies-in-path-operation-decorators.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_005",
+    "category": "multi_hop",
+    "question": "How do you write an async test for a FastAPI endpoint that uses an async dependency?",
+    "expected_answer": "Use httpx.AsyncClient with the FastAPI app and mark the test with pytest.mark.anyio. Import AsyncClient from httpx and use async with AsyncClient(app=app, base_url='http://test') as client to make async requests.",
+    "supporting_chunks": ["prose/advanced/async-tests.md", "prose/tutorial/testing.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_006",
+    "category": "multi_hop",
+    "question": "How do you use a yield dependency to manage a database session and ensure it closes even if the path operation raises an HTTPException?",
+    "expected_answer": "Define a dependency with yield that opens the session before yield and closes it in a finally block after yield. FastAPI runs the code after yield as cleanup even when HTTPException is raised, because HTTPException is handled after dependency teardown.",
+    "supporting_chunks": ["prose/tutorial/dependencies/dependencies-with-yield.md", "prose/tutorial/handling-errors.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_007",
+    "category": "multi_hop",
+    "question": "How do you exclude a field that contains a password from the response model while still accepting it in the request body?",
+    "expected_answer": "Define separate input and output Pydantic models. The input model includes the password field; the output model omits it. Pass the output model as response_model in the decorator so FastAPI filters the password from the response.",
+    "supporting_chunks": ["prose/tutorial/response-model.md", "prose/tutorial/body.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_008",
+    "category": "multi_hop",
+    "question": "How do you add HTTPS redirect middleware and also configure CORS in the same FastAPI application, and does order matter?",
+    "expected_answer": "Add both middlewares with app.add_middleware(). Order matters: middleware added last runs first on incoming requests. Add HTTPSRedirectMiddleware before CORSMiddleware so HTTPS redirect happens before CORS headers are processed.",
+    "supporting_chunks": ["prose/advanced/middleware.md", "prose/tutorial/cors.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_009",
+    "category": "multi_hop",
+    "question": "How do you use OAuth2 scopes to restrict certain path operations to specific user roles in FastAPI?",
+    "expected_answer": "Use OAuth2PasswordBearer with scopes defined at the scheme level. In each path operation, use Security(get_current_user, scopes=['items:read']) instead of Depends(). FastAPI validates the token scopes and raises a 403 if the required scope is missing.",
+    "supporting_chunks": ["prose/advanced/security/oauth2-scopes.md", "prose/tutorial/security/first-steps.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_010",
+    "category": "multi_hop",
+    "question": "How do you share a database connection pool across all requests in FastAPI and close it cleanly on shutdown?",
+    "expected_answer": "Open the connection pool in the lifespan startup block and store it on app.state. Close it in the lifespan shutdown block. In dependencies, access it via request.app.state. This ensures one pool is created and torn down with the application lifecycle.",
+    "supporting_chunks": ["prose/advanced/events.md", "prose/tutorial/dependencies/index.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_011",
+    "category": "multi_hop",
+    "question": "How do you mount a sub-application with its own OpenAPI docs under a path prefix in a FastAPI app?",
+    "expected_answer": "Create a second FastAPI instance and mount it with app.mount('/subapp', subapp). The sub-application has its own /docs and /openapi.json. Use root_path or the behind-a-proxy configuration if the mounted app needs to know its prefix.",
+    "supporting_chunks": ["prose/advanced/sub-applications.md", "prose/advanced/behind-a-proxy.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_012",
+    "category": "multi_hop",
+    "question": "How do you return a custom JSON response with a non-default status code and also declare it in the OpenAPI schema?",
+    "expected_answer": "Return a JSONResponse with the desired status_code from the path operation. To document it in OpenAPI, add it to the responses parameter of the decorator, e.g. responses={202: {'model': MyModel}}.",
+    "supporting_chunks": ["prose/advanced/response-directly.md", "prose/tutorial/response-status-code.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_013",
+    "category": "multi_hop",
+    "question": "How do you validate query parameters using a Pydantic model instead of declaring each one individually?",
+    "expected_answer": "Declare a Pydantic BaseModel and annotate the parameter with Query() using Annotated. FastAPI reads all query parameters matching the model fields and validates them together as a group.",
+    "supporting_chunks": ["prose/tutorial/query-param-models.md", "prose/tutorial/query-params-str-validations.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_014",
+    "category": "multi_hop",
+    "question": "How do you document additional response codes like 404 and 422 with their own schemas in the FastAPI OpenAPI output?",
+    "expected_answer": "Use the responses parameter on the path operation decorator to declare additional responses, e.g. responses={404: {'model': ErrorModel}}. FastAPI merges these into the OpenAPI schema alongside the default 200 response.",
+    "supporting_chunks": ["prose/advanced/additional-responses.md", "prose/tutorial/handling-errors.md"],
+    "should_abstain": false
+  },
+  {
+    "id": "mh_015",
+    "category": "multi_hop",
+    "question": "How do you use a global dependency on the FastAPI app instance while also allowing individual routes to override it?",
+    "expected_answer": "Pass the dependency to the FastAPI constructor with dependencies=[Depends(verify_token)] to apply it globally. Override it for specific routes using app.dependency_overrides in tests, or simply declare a different dependency in the route decorator.",
+    "supporting_chunks": ["prose/tutorial/dependencies/global-dependencies.md", "prose/advanced/testing-dependencies.md"],
+    "should_abstain": false
+  }
+]
